@@ -5,7 +5,7 @@ export const getAllUsers = async (req,res) => {
         const allUsers = await User.find();
         const allUserDetails = [];
         allUsers.forEach(users => {
-            allUserDetails.push({_id: users._id,name: users.name, about: users.about, tags: users.tags, joinedOn: users.joinedOn})
+            allUserDetails.push({_id: users._id,name: users.name, about: users.about, tags: users.tags, joinedOn: users.joinedOn,dob: users.dob,location:users.location})
         })
         res.status(200).json(allUserDetails)
     } catch (error) {
@@ -15,7 +15,7 @@ export const getAllUsers = async (req,res) => {
 
 export const updateProfile = async (req,res) => {
     const {id:_id} = req.params;
-    const {name,about,tags} = req.body;
+    const {name,about,tags,location} = req.body;
     if(!mongoose.Types.ObjectId.isValid(_id)){
         return res.status(404).send('User unavailable')
     }
@@ -24,7 +24,8 @@ export const updateProfile = async (req,res) => {
             $set: {
                 'name':name,
                 'about':about,
-                'tags':tags
+                'tags':tags,
+                'location': location
             }
         },
         {

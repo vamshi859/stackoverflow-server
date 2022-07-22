@@ -13,6 +13,13 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  dob: {
+    type: Date,
+    required: true
+  },
+  location: {
+    type: String
+  },
   about: {
     type: String,
   },
