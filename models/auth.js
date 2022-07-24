@@ -17,8 +17,9 @@ const userSchema = mongoose.Schema({
     type: Date,
     required: true
   },
-  location: {
-    type: String
+  ip: {
+    type: String,
+    required: true
   },
   about: {
     type: String,
